@@ -2,6 +2,8 @@ package com.lbb.module.reflect.client;
 
 import com.lbb.module.reflect.model.Student;
 
+import java.lang.reflect.Constructor;
+
 public class ReflectTest {
 
     public static void main(String[] args){
@@ -28,7 +30,12 @@ public class ReflectTest {
             Class c3 = Class.forName("com.lbb.module.reflect.model.Student");
             System.out.println(c3.getName());
             System.out.println(c3==c2);
-        } catch (ClassNotFoundException e) {
+
+            Constructor constructor = c3.getConstructor(int.class);
+            constructor.newInstance(1); //先获取构造方法 再实例化
+
+            c3.newInstance();//调用的是无参的构造方法
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
